@@ -61,6 +61,7 @@
       </div>
 
       <div class="subheader-text">Some sample SQL queries that could be used to answer questions</div>
+      <div class="body-text"><b>Query #1</b></div>
       <pre>
         <code>
           USE marveldb;
@@ -79,7 +80,7 @@
         promotion. 
       </div>
      
-
+    <div class="body-text"><b>Query #2</b></div>
      <pre>
       <code>
         # best_director (returns directors with their average movie rating and
@@ -96,12 +97,13 @@
         ORDER BY sum(box_office_gross) DESC;
        </code>
      </pre>
-     <div class="body-text">How can this be modified to answer business questions?</div>
-     <div class="body-text">This function will return a list of people (customers, employees) and average and sum some detail about them. 
+     <div class="body-text"><b>How can this be modified to answer business questions?</b><br>
+      This function will return a list of people (customers, employees) and average and sum some detail about them. 
       In this case it was the rating of all of their movies and their total box office gross, but could be applied to shopping frequency or 
       how much they've spent at this store.
-     </div>
-
+    </div>
+   
+    <div class="body-text"><b>Query #3</b></div>
      <pre>
       <code>
         # nick_fury_appearances (returns every property with Nick Fury)
@@ -123,12 +125,14 @@
       </code>
      </pre>
 
-     <div class="body-text">How can this be modified to answer business questions?</div>
-     <div class="body-text">This functions returns everytime a specific instance of something occurs. This could be how often a customer makes a purchase or
+     <div class="body-text"><b>How can this be modified to answer business questions?</b><br>
+      This functions returns everytime a specific instance of something occurs. This could be how often a customer makes a purchase or
       which items are consistently selling throughout the year or if they are seasonal. This could help managers determine how to best manage their stock to
       keep customers happy. 
      </div>
+   
 
+  <div class="body-text"><b>Query #4</b></div>
     <pre>
       <code>
         # long_episodes (returns tv episodes with episodes longer than 45 min)
@@ -141,12 +145,14 @@
        </code>
     </pre>
 
-      <div class="body-text">How can this be modified to answer business questions?</div>
-      <div class="body-text">This function will return a list of things that meet a certain metric. This could be used by rental company to determine which
-        models are being rented the longest and therefore will make them the most money. Or it can be used to determine which clients or employees have been with their 
-        company for over a year and might need a check-in to ensure things are going smoothly. 
+    <div class="body-text"><b>How can this be modified to answer business questions?</b><br>
+      This function will return a list of things that meet a certain metric. This could be used by rental company to determine which
+      models are being rented the longest and therefore will make them the most money. Or it can be used to determine which clients or employees have been with their 
+      company for over a year and might need a check-in to ensure things are going smoothly. 
       </div>
-
+    
+    
+      <div class="body-text"><b>Query #5</b></div>
      <pre>
       <code>
         # highest_grossing_character (returns the highest grossing character)
@@ -166,11 +172,13 @@
         ) x;
       </code>
      </pre>
-     <div class="body-text">How can this be modified to answer business questions?</div>
-     <div class="body-text">This function will return the person or item that is performing the best. This can be gross sales or total sales. Or which item has
+     <div class="body-text"><b>How can this be modified to answer business questions?</b><br>
+      This function will return the person or item that is performing the best. This can be gross sales or total sales. Or which item has
       sold the most or made them the most money.
      </div>
+    
 
+     <div class="body-text"><b>Query #6</b></div>
      <pre>
       <code>
         # phases_performance (returns average movie rating and total box office
@@ -182,10 +190,11 @@
         GROUP BY phase_name;
       </code>
      </pre>
-     <div class="body-text">How can this be modified to answer business questions?</div>
-     <div class="body-text">This function will return which group of people or items are preforming above average. This could be types of sales people or item 
+     <div class="body-text"><b>How can this be modified to answer business questions?</b><br>
+      This function will return which group of people or items are preforming above average. This could be types of sales people or item 
       (electronics, homegoods, clothing). Performance is an important metric for managers to keep track of and this will help them easily determine that.  
      </div>
+  
 
     </div>
 
