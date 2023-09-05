@@ -44,7 +44,7 @@
 
           (this should be the same across all pages)
          -->
-        <span class="nav-title">MCU DB</span>
+        <span class="nav-title">My Portfolio/span>
         <!-- 
           TODO - Change the email after 'mailto:' to your email address for contact 
         
@@ -92,73 +92,90 @@ FROM movies
 WHERE box_office_gross >
 (SELECT AVG(box_office_gross) FROM movies)
 ORDER BY box_office_gross DESC;
-
-# best_director (returns directors with their average movie rating and
-total box gross)
-SELECT concat(director_last_name, ", ", director_first_name) as
-director_name,
-concat("$", format(sum(box_office_gross), 2)) as
-total_box_office_gross,
-format(AVG(movie_rating), 2) as avg_movie_rating
-FROM movies_has_directors
-LEFT JOIN movies using(movie_id)
-LEFT JOIN directors using(director_id)
-GROUP BY director_name
-ORDER BY sum(box_office_gross) DESC;
-
-# highest_grossing_character (returns the highest grossing character)
-SELECT character_name, concat('$', format(max(character_gross),2))
-as character_gross
-FROM (
-SELECT concat(character_first_name, ' ',
-character_last_name) as
-character_name,
-count(character_id) as appearances, sum(box_office_gross)
-as character_gross
-FROM movies_has_characters
-LEFT JOIN movies using(movie_id)
-LEFT JOIN characters using(character_id)
-GROUP BY character_name
-ORDER BY sum(box_office_gross)DESC LIMIT 25 OFFSET 1
-) x;
-
-# phases_performance (returns average movie rating and total box office
-gross for each of the MCU phases)
-SELECT phase_name, format(AVG(movie_rating), 2) as movie_rating_avg,
-concat('$', format(SUM(box_office_gross), 2)) as
-box_office_gross
-FROM phases JOIN movies using(phase_id)
-GROUP BY phase_name;
-
-# nick_fury_appearances (returns every property with Nick Fury)
-SELECT phase_id, movie_name as mcu_property, release_date
-FROM movies_has_characters
-LEFT JOIN movies using(movie_id)
-LEFT JOIN characters using(character_id)
-WHERE character_id = 1
-UNION
-SELECT phase_id, concat(series_name) as mcu_property,
-series_start_date as
-release_date
-FROM tv_series_has_characters
-LEFT JOIN tv_series using(series_id)
-LEFT JOIN tv_episodes using(series_id)
-LEFT JOIN characters using(character_id)
-WHERE character_id = 1
-ORDER BY release_date ASC;
-
-# long_episodes (returns tv episodes with episodes longer than 45 min)
-SELECT series_name, season_number, episode_number, episode_name,
-episode_runtime
-FROM tv_episodes JOIN tv_series using(series_id)
-WHERE episode_runtime > 45
-GROUP BY episode_id
-ORDER BY episode_runtime DESC;
         </code>
       </pre>
 
-     
-      
+     <pre>
+      <code>
+        # best_director (returns directors with their average movie rating and
+        total box gross)
+        SELECT concat(director_last_name, ", ", director_first_name) as
+        director_name,
+        concat("$", format(sum(box_office_gross), 2)) as
+        total_box_office_gross,
+        format(AVG(movie_rating), 2) as avg_movie_rating
+        FROM movies_has_directors
+        LEFT JOIN movies using(movie_id)
+        LEFT JOIN directors using(director_id)
+        GROUP BY director_name
+        ORDER BY sum(box_office_gross) DESC;
+       </code>
+     </pre>
+     <div class="body-text"></div>
+
+     <pre>
+      <code>
+        # nick_fury_appearances (returns every property with Nick Fury)
+        SELECT phase_id, movie_name as mcu_property, release_date
+        FROM movies_has_characters
+        LEFT JOIN movies using(movie_id)
+        LEFT JOIN characters using(character_id)
+        WHERE character_id = 1
+        UNION
+        SELECT phase_id, concat(series_name) as mcu_property,
+        series_start_date as
+        release_date
+        FROM tv_series_has_characters
+        LEFT JOIN tv_series using(series_id)
+        LEFT JOIN tv_episodes using(series_id)
+        LEFT JOIN characters using(character_id)
+        WHERE character_id = 1
+        ORDER BY release_date ASC;
+      </code>
+     </pre>
+
+      <pre>
+        <code>
+          # long_episodes (returns tv episodes with episodes longer than 45 min)
+          SELECT series_name, season_number, episode_number, episode_name,
+          episode_runtime
+          FROM tv_episodes JOIN tv_series using(series_id)
+          WHERE episode_runtime > 45
+          GROUP BY episode_id
+          ORDER BY episode_runtime DESC;
+        </code>
+      </pre>
+
+     <pre>
+      <code>
+        # highest_grossing_character (returns the highest grossing character)
+        SELECT character_name, concat('$', format(max(character_gross),2))
+        as character_gross
+        FROM (
+        SELECT concat(character_first_name, ' ',
+        character_last_name) as
+        character_name,
+        count(character_id) as appearances, sum(box_office_gross)
+        as character_gross
+        FROM movies_has_characters
+        LEFT JOIN movies using(movie_id)
+        LEFT JOIN characters using(character_id)
+        GROUP BY character_name
+        ORDER BY sum(box_office_gross)DESC LIMIT 25 OFFSET 1
+        ) x;
+      </code>
+     </pre>
+     <pre>
+      <code>
+        # phases_performance (returns average movie rating and total box office
+        gross for each of the MCU phases)
+        SELECT phase_name, format(AVG(movie_rating), 2) as movie_rating_avg,
+        concat('$', format(SUM(box_office_gross), 2)) as
+        box_office_gross
+        FROM phases JOIN movies using(phase_id)
+        GROUP BY phase_name;
+      </code>
+     </pre>
     </div>
 
     <!-- FOOTER -->
