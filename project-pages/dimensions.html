@@ -87,6 +87,33 @@ partner_names[0]
           </code>
         </pre>
 
+        <pre> 
+<code> 
+  # for each partner_id, loop through each category
+n = 0
+dimensions = pd.DataFrame()
+for y in partner_ids:
+    # new dataframe for each partner
+    partner = pd.DataFrame()
+    print(partner_names[n])
+    for z in categories:
+        # query returns all publications for each partner institution for each of the above categories
+        query = f"""search publications where research_orgs.id="{y}" and 
+                (category_for.name="{z}")
+                return publications[title+type+year+times_cited] sort by times_cited"""
+        print(f"{z}")
+        res = dsl.query_iterative(query)
+        df = res.as_dataframe()
+        df['category'] = z
+        df['partner'] = partner_names[n]
+        partner = partner.append(df)
+    dimensions = dimensions.append(partner)
+    n+=1
+dimensions.to_excel("dimensions_publication_data.xlsx")
+</code>
+        </pre>
+
+        
         </div>
       </div>
 
@@ -119,19 +146,24 @@ partner_names[0]
                   - IMAGE_CAPTION: to the caption of the image
             -->
             <div class="gallery-image-container half-width">
-              <img src="../assets/images/code.jpeg" class="gallery-image">
+              <img src="../assets/table citations.png" class="gallery-image">
               <span class="image-caption">Give your image a caption. People love context.</span>
             </div>
             <div class="gallery-image-container half-width">
-              <img src="../assets/images/sketchbook.jpeg" class="gallery-image">
+              <img src="../assets/publications by partner.png" class="gallery-image">
               <span class="image-caption">Give your image a caption. People love context.</span>
             </div>
             <div class="gallery-image-container">
-              <img src="../assets/images/camera.jpeg" class="gallery-image">
+              <img src="../assets/Publications By Category Plant Bio.png" class="gallery-image">
               <span class="image-caption">Give your image a caption. People love context.</span>
             </div>
         </div>
       </div>
+
+      <div class="subheader-text">More Information</div>
+        <div class="project-details-content">
+          <div class="body-text">If you would like to explore this project further, the project folder 'assests' on my github will have the presentation
+            I presented at an AgNIC Seminar in April 2023. If you are interested in more visualizations, there can be found in that folder as well </div>
     </div>
 
     <!-- FOOTER -->
@@ -141,25 +173,7 @@ partner_names[0]
 
         This should be the same across all pages.
       -->
-      <a class="icon-link" target="_blank" href="https://twitter.com/whitevans_eth">
-        <image src="../assets/icons/instagram.svg" class="footer-icon"/>
-      </a>
-      <!-- 
-        TODO - Change href to your Twitter account (can also delete entire "a" element if no Twitter) 
-      
-        This should be the same across all pages.
-      -->
-      <a class="icon-link" target="_blank" href="https://twitter.com/whitevans_eth">
-        <image src="../assets/icons/twitter.svg" class="footer-icon"/>
-      </a>
-      <!-- 
-        TODO - Change the email after "mailto" to your contact email 
-      
-        This should be the same across all pages.
-      -->
-      <a class="icon-link" href="mailto:whitevans.eth@gmail.com">
-        <image src="../assets/icons/mail.svg" class="footer-icon"/>
-      </a>
+    
     </div>
 
 	</body>
