@@ -44,7 +44,7 @@
 
           (this should be the same across all pages)
          -->
-        <span class="nav-title">My Portfolio/span>
+        <span class="nav-title">My Portfolio</span>
         <!-- 
           TODO - Change the email after 'mailto:' to your email address for contact 
         
@@ -84,14 +84,13 @@
       <pre>
         <code>
           USE marveldb;
-# successful_movies (returns movies with higher than mcu average box
-office)
-SELECT movie_name, concat('$', format(box_office_gross, 2)) as
-box_office
-FROM movies
-WHERE box_office_gross >
-(SELECT AVG(box_office_gross) FROM movies)
-ORDER BY box_office_gross DESC;
+          # successful_movies (returns movies with higher than mcu average box office)
+          SELECT movie_name, concat('$', format(box_office_gross, 2)) as
+          box_office
+          FROM movies
+          WHERE box_office_gross >
+          (SELECT AVG(box_office_gross) FROM movies)
+          ORDER BY box_office_gross DESC;
         </code>
       </pre>
 
@@ -138,13 +137,13 @@ ORDER BY box_office_gross DESC;
       </code>
      </pre>
 
-      <pre>
-        <code>
-          # long_episodes (returns tv episodes with episodes longer than 45 min)
-          SELECT series_name, season_number, episode_number, episode_name,
-          episode_runtime
-          FROM tv_episodes JOIN tv_series using(series_id)
-          WHERE episode_runtime > 45
+    <pre>
+      <code>
+        # long_episodes (returns tv episodes with episodes longer than 45 min)
+        SELECT series_name, season_number, episode_number, episode_name,
+        episode_runtime
+        FROM tv_episodes JOIN tv_series using(series_id)
+        WHERE episode_runtime > 45
           GROUP BY episode_id
           ORDER BY episode_runtime DESC;
         </code>
